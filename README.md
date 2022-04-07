@@ -10,3 +10,4 @@ TODO:
 - Thats all folks section on the bottom
 - Convert data from excel (CSV?) into array of objects with {author, info, meme}[] [ Patryk? ]
 - dynamically iterate through array and create meme-wish components
+- add intersection observer for meme animation [ Krzysiek ]
