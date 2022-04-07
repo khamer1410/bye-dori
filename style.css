@@ -1,3 +1,64 @@
-p {
-  color: blue
+/* GENERAL */
+:root {
+  --blue: #3d99af;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue);
+}
+
+.hero img {
+  width: 200px;
+}
+
+.header {
+  display: flex;
+}
+
+/* MEMES */
+.meme-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 200px;
+}
+
+.meme {
+  border: solid 1px saddlebrown;
+  padding: 10px;
+  display: flex;
+  max-width: 80vw;
+}
+
+.meme:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.meme img {
+  padding: 5px;
+  max-width: 50%;
 }
