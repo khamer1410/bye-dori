@@ -10,6 +10,9 @@
         const memesMatch = [
           ...csvString.matchAll(/^([^,^@]+),(.+),([^,]*)$/gm),
         ];
+
+        shuffle(memesMatch);
+
         memesMatch.forEach(([_, name, descriptionStr, imageStr]) => {
           const newMeme = memeTemplate.cloneNode(true);
           newMeme.querySelector(".name").innerHTML = name;
@@ -30,6 +33,14 @@
           memeTemplateElement.parentElement.append(newMeme);
         });
       });
+  }
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 
   injectMemes().then(() => {
@@ -56,11 +67,10 @@
 
   const noBtn = document.querySelector("#no-btn");
 
-  noBtn.addEventListener("click", alertsMessage);
+  noBtn.addEventListener("click", () => {
+    document.getElementById("rickRoll").play();
+    noBtn.textContent = "You've been RickRolled! Scroll down XD"
 
-  function alertsMessage() {
-    alert("Hello");
-  }
-
+  });
 
 })();
