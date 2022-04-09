@@ -7,7 +7,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   background-color: var(--blue);
 }
@@ -36,6 +36,15 @@ img {
 
 .header {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header__title {
+  font-size: 50px;
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 
 /* MEMES */
@@ -65,4 +74,28 @@ img {
 
 #template--meme {
   display: none;
+}
+
+@keyframes dont-btn {
+  from {
+    background-color: red;
+    transform: scale(1);
+  }
+
+  to {
+    background-color: #af0000;
+    transform: scale(1.2);
+  }
+}
+
+.dont-btn {
+  border: 2px solid red;
+  padding: 50px 100px;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: red;
+  margin: 15px;
+  animation: dont-btn 0.5s infinite;
+  cursor: pointer;
 }
