@@ -8,7 +8,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 1.5;
   background-color: var(--blue);
 }
 
@@ -31,7 +32,7 @@ img {
 }
 
 .hero img {
-  width: 200px;
+  width: 400px;
 }
 
 .header {
@@ -53,23 +54,60 @@ img {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 200px;
+  gap: 300px;
 }
 
 .meme {
   border: solid 1px saddlebrown;
   padding: 10px;
   display: flex;
-  max-width: 80vw;
+  width: 80vw;
+  opacity: 0;
+  transform: translateX(-70vw);
+  transition: all 0.8s ease-in-out;
+  text-align: center;
 }
 
-.meme:nth-child(even) {
-  flex-direction: row-reverse;
+.meme.visible {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .meme:nth-child(even) {
+    flex-direction: row-reverse;
+    transform: translateX(70vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .meme {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .meme img {
+    max-width: 100%;
+  }
 }
 
 .meme img {
   padding: 5px;
   max-width: 50%;
+  object-fit: contain;
+}
+
+.description {
+  padding: 10px;
+}
+
+.glass {
+  background: rgba(253, 252, 252, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 #template--meme {
@@ -98,4 +136,17 @@ img {
   margin: 15px;
   animation: dont-btn 0.5s infinite;
   cursor: pointer;
+}
+
+.end {
+  text-align: center;
+  margin-top: 300px;
+}
+
+footer {
+  background-color: black;
+  color: #00ee4d;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 50px;
 }
