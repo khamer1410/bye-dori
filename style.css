@@ -34,6 +34,7 @@ img {
 .hero img {
   width: 400px;
   height: 280px;
+  padding-bottom: 30px;
 }
 
 .header {
@@ -67,6 +68,7 @@ img {
   transform: translateX(-70vw);
   transition: all 0.8s ease-in-out;
   text-align: center;
+  justify-content: center;
 }
 
 .meme.visible {
@@ -141,7 +143,7 @@ img {
 
 .end {
   text-align: center;
-  margin-top: 300px;
+  margin: 300px 0 100px 0;
 }
 
 footer {
