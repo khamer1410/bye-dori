@@ -1,41 +1,28 @@
-const csv = `@ Dori is leaving the company 😭 Please pick up a meme for her and write down a few words - we will combine them into the 'goodbye Dori webpage',,
-@ Meme finder,https://giphy.com/,
-@,https://memegine.com/,
-@ WHO,Desctiption / why this meme / thank you,Meme link
-Krzysztof Hamerszmit,"When someone was sick You always put this one :) Today this is how i feel. That was a great experience working with You, hope You will find a job with a teammates as cool as us - and a land of neverending wine, wine, wine :) ",https://media.giphy.com/media/VKD6xhYJzdEQw/giphy.gif
-Jörg S.,"so long, and thanks for all the fish - maybe we could keep the cup :)",Finding Dory GIF by Disney/Pixar's Finding Dory - Find & Share on GIPHY
-Bojan Arcon ,"Dori, I am sorry we didn't have time to work together but from what I hear that you will be honestly missed as you were described to me as a great friend, asset to the team and the project. You made a difference.  Have fun in your next adventures.",https://media.giphy.com/media/jV0R1J6mYM3IXjjidE/giphy.gif
-Grzegorz Dąbrowski,"Dori, unfortunately for me we didn't have enough time to work together but I do remember the first GIF you sent me back in December. And then I knew our collaboration would be a great experience. It was! Thank you <3",https://giphy.com/gifs/youre-welcome-kmQREsvNQrhrHdkN7G
-Kristina,always remember - the trick is to keep breathing :-)  and thanks for all the imports :D ,https://giphy.com/gifs/idiot-sanders-fraud-ncsQI9sF3pa8w
-Maciek Next Step Pastuszka,Keep continuing the change of projects on your path in a way you changed miox. Or maybe even more!,
-Julian Hochgürtel,Will miss your always smiling face in monday morning weeklys,https://giphy.com/gifs/smile-keep-smiling-dont-worry-be-happy-re5riMLTYfptGeLfGg
-Gosia Kobiałko,"Thanks for all the discussions (no need to add more). I will definitely miss your smile on Monday morning with statement ""Happy Monday"".  Mem from our discussions ",https://giphy.com/gifs/mrw-laughing-class-OhrNfRrBxgz16
-Matthias Goscinski,"I will neither comment on how often wine was our topic, nor how early it popped up during the day. But it was always a pleasure working, discussing even traveling with you. Thanks for the great laughs and memories!",https://media.giphy.com/media/lHMCC5anW8GIM/giphy.gif
-Piotr Ptaszyński,We have worked together pretty short but I won't forget your positive energy and commitment. I wish you good luck and all the best on your future journey! Never forget about the FRIDAY DANCE!,https://giphy.com/gifs/friday-its-JmVcakKIdojgpBC2iw
-Lukas Hunkel,I will never forget the amazing meals you always cooked for the whole team & the apple crumble,https://giphy.com/clips/buzzfeed-breakfast-pancakes-ihop-pancake-day-r7eoVq0GD18gMzVwch
-Mareike Marner ,"We may didn't work that much together but it was always a pleasure, especially the EPI anger management calls. Lucky me I don’t have to miss you, because you became my foodie friend <3 ",https://media.giphy.com/media/XjorlX7baRUKA/giphy.gif
-Michael Sattler,"Thank you for keeping an eye on updates and speaking up, if things didn´t make sense. Keep it up.",https://giphy.com/gifs/bettoredge-app-update-updates-FtXWChRfsZX1z3rOGn
-Noelle Dhawan,Thank you for always putting out the fire. Keep up & stay as you are! ,https://giphy.com/clips/erichamlet-LbUjyI9ye230n0mnSG
-Madeleine Zielbauer,"Thank you for your great work and support! It was a great pleasure to work with you and I'm very grateful that i can call you not only a colleague and neighbour, but also a friend :)",https://giphy.com/gifs/popkey-feedback-client-aMzFQ7nULrguA
-Andi Schill,"Me setting up a SYZYGY team chart, deciding to include surnames and realizing Dori has to be on it... Things don't have to be always easy to be a great pleasure and be remembered! All the best Dori.",https://giphy.com/gifs/uefa-remixed-PZDwfnMwHvdwuKVKsV
-Michal Saletra,Always on your team!,https://giphy.com/gifs/power-rangers-mighty-morphin-kyoryu-sentai-zyuranger-Wz59qKxz2B9oQ
-Molle ,Nice Tattoos. Good Talks. Cheers Molle,https://giphy.com/gifs/dance-party-molle-WqEjJKmYULWmv8SQQb`;
-
 (function () {
-  const regex = /^([^,^@]+),(.+),([^,]*)$/gm;
-  const memesMatch = [...csv.matchAll(regex)];
+  fetch("Dori%20meme%20-%20Sheet1.csv")
+    .then((result) => result.text())
+    .then((csvString) => {
+      const memeTemplateElement = document.querySelector("#template--meme");
+      const memeTemplate = memeTemplateElement.cloneNode(true);
+      memeTemplate.removeAttribute("id");
 
-  const memeTemplateElement = document.querySelector("#template--meme");
-  const memeTemplate = memeTemplateElement.cloneNode(true);
-  memeTemplate.id = undefined;
+      const memesMatch = [...csvString.matchAll(/^([^,^@]+),(.+),([^,]*)$/gm)];
+      memesMatch.forEach(([_, name, description, imageStr]) => {
+        const newMeme = memeTemplate.cloneNode(true);
+        newMeme.querySelector(".name").innerHTML = name;
+        newMeme.querySelector(".description").innerHTML = description;
 
-  memesMatch.forEach(([_, name, description, image]) => {
-    const meme = memeTemplate.cloneNode(true);
-    meme.querySelector(".name").innerHTML = name;
-    meme.querySelector(".description").innerHTML = description;
-    meme.querySelector(".image").src = image;
-    memeTemplateElement.parentElement.append(meme);
-  });
+        let image = imageStr.replace("\r", "");
+        if (image.includes("//giphy.com/")) {
+          const gifId = image.match(/([^-]*)$/g)[0];
+          gifId && (image = `https://i.giphy.com/media/${gifId}/giphy.gif`);
+        }
+        if (image) newMeme.querySelector(".image").src = image;
+        else newMeme.querySelector(".image").remove();
+
+        memeTemplateElement.parentElement.append(newMeme);
+      });
+    });
 
   const noBtn = document.querySelector("#no-btn");
 
