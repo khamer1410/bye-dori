@@ -1,4 +1,4 @@
-const csv = `@ Dori is leaving the company 😭 Please pick up a meme for her and write down a few words - we will combine them into the 'goodbye Dori webpage',,
+@ Dori is leaving the company 😭 Please pick up a meme for her and write down a few words - we will combine them into the 'goodbye Dori webpage',,
 @ Meme finder,https://giphy.com/,
 @,https://memegine.com/,
 @ WHO,Desctiption / why this meme / thank you,Meme link
@@ -19,27 +19,4 @@ Noelle Dhawan,Thank you for always putting out the fire. Keep up & stay as you a
 Madeleine Zielbauer,"Thank you for your great work and support! It was a great pleasure to work with you and I'm very grateful that i can call you not only a colleague and neighbour, but also a friend :)",https://giphy.com/gifs/popkey-feedback-client-aMzFQ7nULrguA
 Andi Schill,"Me setting up a SYZYGY team chart, deciding to include surnames and realizing Dori has to be on it... Things don't have to be always easy to be a great pleasure and be remembered! All the best Dori.",https://giphy.com/gifs/uefa-remixed-PZDwfnMwHvdwuKVKsV
 Michal Saletra,Always on your team!,https://giphy.com/gifs/power-rangers-mighty-morphin-kyoryu-sentai-zyuranger-Wz59qKxz2B9oQ
-Molle ,Nice Tattoos. Good Talks. Cheers Molle,https://giphy.com/gifs/dance-party-molle-WqEjJKmYULWmv8SQQb`;
-
-(function () {
-  const regex = /^([^,^@]+),(.+),([^,]*)$/gm;
-  const memesMatch = [...csv.matchAll(regex)];
-
-  const memeTemplateElement = document.querySelector("#template--meme");
-  const memeTemplate = memeTemplateElement.cloneNode(true);
-  memeTemplate.id = undefined;
-
-  memesMatch.forEach(([_, name, description, image]) => {
-    const meme = memeTemplate.cloneNode(true);
-    meme.querySelector(".name").innerHTML = name;
-    meme.querySelector(".description").innerHTML = description;
-    meme.querySelector(".image").src = image;
-    memeTemplateElement.parentElement.append(meme);
-  });
-
-  const noBtn = document.querySelector("#no-btn");
-
-  noBtn.addEventListener("click", () => {
-    alert("CLICKED");
-  });
-})();
+Molle ,Nice Tattoos. Good Talks. Cheers Molle,https://giphy.com/gifs/dance-party-molle-WqEjJKmYULWmv8SQQb
