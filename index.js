@@ -7,9 +7,13 @@
       memeTemplate.removeAttribute("id");
 
       const memesMatch = [...csvString.matchAll(/^([^,^@]+),(.+),([^,]*)$/gm)];
-      memesMatch.forEach(([_, name, description, imageStr]) => {
+      memesMatch.forEach(([_, name, descriptionStr, imageStr]) => {
         const newMeme = memeTemplate.cloneNode(true);
         newMeme.querySelector(".name").innerHTML = name;
+
+        const description = descriptionStr.startsWith('"')
+          ? descriptionStr.substring(1, descriptionStr.length - 1)
+          : descriptionStr;
         newMeme.querySelector(".description").innerHTML = description;
 
         let image = imageStr.replace("\r", "");
