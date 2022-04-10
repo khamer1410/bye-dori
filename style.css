@@ -100,7 +100,13 @@ img {
 .meme img {
   padding: 5px;
   max-width: 50%;
+  min-width: 33vh;
+  min-height: 33vh;
   object-fit: contain;
+}
+
+.text {
+  flex-grow: 2;
 }
 
 .description {
