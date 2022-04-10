@@ -57,8 +57,9 @@ img {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 300px;
+  gap: 33vh;
   margin-top: 33vh;
+  margin-bottom: 33vh;
 }
 
 .meme {
@@ -113,6 +114,7 @@ img {
   -webkit-backdrop-filter: blur(14px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  min-height: 33vh;
 }
 
 #template--meme {
