@@ -58,6 +58,7 @@ img {
   align-items: center;
   flex-direction: column;
   gap: 300px;
+  margin-top: 33vh;
 }
 
 .meme {
@@ -156,7 +157,22 @@ footer {
 }
 
 .dori-nemo {
-   animation: tilt-n-move-shaking 2s infinite;
+  width: 400px;
+  height: 280px;
+  animation: tilt-n-move-shaking 2s infinite;
+}
+.dori-container {
+  position: absolute;
+  top: -500px;
+  width: 100%;
+  transform: translateY(-33%);
+  z-index: 9;
+  transition: top 1.5s, opacity 1s;
+}
+.dori-container img {
+  width: 150px;
+  height: auto;
+  animation: horizontal-shaking 2s infinite;
 }
 
 @keyframes tilt-n-move-shaking {
@@ -165,4 +181,12 @@ footer {
   50% { transform: translate(0, 0) rotate(0eg); }
   75% { transform: translate(-5px, 5px) rotate(-5deg); }
   100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes horizontal-shaking {
+ 0% { transform: translateX(0) }
+ 25% { transform: translateX(5px) }
+ 50% { transform: translateX(-5px) }
+ 75% { transform: translateX(5px) }
+ 100% { transform: translateX(0) }
 }

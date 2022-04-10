@@ -35,6 +35,13 @@
       });
   }
 
+  const stickyElement = document.querySelector(".dori-container");
+  const observer = new IntersectionObserver(
+    ([{ isIntersecting }]) =>
+      (stickyElement.style.opacity = isIntersecting ? 0 : 1)
+  );
+  observer.observe(document.querySelector(".dori-nemo"));
+
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -50,6 +57,10 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
+            stickyElement.style.top = `${entry.target.offsetTop}px`;
+            stickyElement.style.left = `${
+              entry.target.offsetLeft + entry.target.clientWidth - 50
+            }px`;
           } else {
             entry.target.classList.remove("visible");
           }
@@ -69,8 +80,6 @@
 
   noBtn.addEventListener("click", () => {
     document.getElementById("rickRoll").play();
-    noBtn.textContent = "You've been RickRolled! Scroll down XD"
-
+    noBtn.textContent = "You've been RickRolled! Scroll down XD";
   });
-
 })();
